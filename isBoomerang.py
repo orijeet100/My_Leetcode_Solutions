@@ -27,11 +27,13 @@ class Solution(object):
         :rtype: bool
         """
 
-        x1, y1 = points[0]
-        x2, y2 = points[1]
-        x3, y3 = points[2]
+        if (points[0][0] == points[1][0] and points[0][1] == points[1][1]) or (points[1][0] == points[2][0] and points[1][1] == points[2][1]) or (points[0][0] == points[2][0] and points[0][1] == points[2][1]):
+            return False
 
-        return (y2 - y1) * (x3 - x2) != (y3 - y2) * (x2 - x1)
+        def slope(l1, l2):
+            return float(l1[1] - l2[1]) / (l1[0] - l2[0]) if l1[0] - l2[0] != 0 else float('inf')
 
+
+        return slope(points[1],points[0])!=slope(points[0],points[2])
 
         
