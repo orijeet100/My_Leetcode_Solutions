@@ -40,4 +40,4 @@ Each Python file contains:
 
 ---
 
-*Happy coding and problem solving! *
+*Happy coding and problem solving!  *
