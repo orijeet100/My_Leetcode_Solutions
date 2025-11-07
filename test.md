@@ -9,12 +9,10 @@ We use **uv** for fast, isolated Python environments.
 
 ## 📋 Prerequisites
 
-* Python 3.10+
 * **uv** installed:
-  ```bash
+  ```
   curl -LsSf https://astral.sh/uv/install.sh | sh
   ```
-* FFmpeg not required (we use `torchaudio.load` on WAV)
 
 ## 📁 Repo Structure
 
@@ -23,28 +21,19 @@ We use **uv** for fast, isolated Python environments.
 ├─ label_files/
 │  ├─ dataset.json              # raw labels (given)
 │  └─ dataset_clean.json        # created by the notebook (output)
-├─ wav_files/                   # WAV audio files (given)
-├─ dataset.py                   # minimal PyTorch Dataset (trusts cleaned JSON)
+├─ wav_files/                   # Not uploaded with the submission but assumed that they are present.
+├─ dataset.py                   # minimal PyTorch Dataset (with cleaned JSON)
 ├─ result.ipynb                 # EDA + cleaning + stats + outliers
 └─ README.md
 ```
 
-## 🚀 Setup with uv
+## Setup with uv
 
-### Option A — Quick ad-hoc install:
 
 ```bash
 uv venv
 source .venv/bin/activate
 uv pip install torch torchaudio pandas numpy matplotlib jupyter ipykernel ipywidgets
-```
-
-### Option B — Using a `pyproject.toml` (optional):
-
-If you add one, then:
-```bash
-uv sync
-source .venv/bin/activate
 ```
 
 ## 🔄 Reproduce Results
@@ -57,10 +46,10 @@ This will:
 * Remove extra spaces
 * Compute duration/word stats & plots
 * Flag outliers
-* Drop known bad files (`spkr2902_sample1870.wav`, `spkr1988_sample233.wav`)
+* Drop known bad files (`spkr2902_sample1870.wav`, `spkr1988_sample233.wav`,`genderMale_sample4803.wav`)
 * Write `label_files/dataset_clean.json`
 
-```bash
+```
 jupyter notebook result.ipynb
 # In the notebook: run all cells top-to-bottom
 ```
